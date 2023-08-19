@@ -1,0 +1,9 @@
+[{
+  "isdn": "1234",
+  "title": "first cup of JAVA",
+  "authorIds": [1,2]
+}, {
+  "isdn": "2345",
+  "title": "summer fun",
+  "authorIds": [1]
+}]

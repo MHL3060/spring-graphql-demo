@@ -1,0 +1,19 @@
+scalar Long
+
+type Query {
+    getAuthors: [Author]
+
+}
+
+type Author {
+    id: Long
+    firstName: String
+    lastName: String
+    books: [Book]
+}
+
+type Book {
+    isdn: String
+    title: String
+    authors: [Author]
+}
