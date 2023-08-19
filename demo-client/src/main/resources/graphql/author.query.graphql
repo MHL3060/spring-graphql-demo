@@ -1,0 +1,13 @@
+query findBooksByAuthorId($authorId: Long!) {
+    rows: findBooksByAuthorId(authorId: $authorId) {
+        isdn
+        title
+    }
+}
+
+query findAuthorById($authorId: Long!) {
+    result: findAuthorById(authorId: $authorId) {
+        firstName
+        lastName
+    }
+}
