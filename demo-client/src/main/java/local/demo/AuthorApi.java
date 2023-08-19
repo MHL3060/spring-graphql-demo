@@ -55,8 +55,15 @@ public class AuthorApi {
         return result.flatMapIterable(Function.identity());
     }
 
+    public Flux<Author> getAuthors() {
+        var result = monoGraphQLClient.reactiveExecuteQuery(graphQLQueries, Map.of(), "getAllAuthors")
+                .map(response -> convert(response, Author.class));
+
+        return result.flatMapIterable(Function.identity());
+    }
+
     private <T> List<T> convert(GraphQLResponse response, Class<T> ref) {
-        var result = (List<T>) Optional.ofNullable(response.extractValue("rows[*]"))
+        var result = (List<T>) Optional.ofNullable(response.extractValue("data.rows[*]"))
                 .map(List.class::cast)
                 .orElseGet(List::of)
                 .stream()

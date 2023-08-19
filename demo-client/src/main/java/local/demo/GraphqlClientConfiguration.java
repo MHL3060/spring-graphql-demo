@@ -17,7 +17,7 @@ import java.util.List;
 
 @Configuration
 public class GraphqlClientConfiguration {
-
+    private final String url = "http://localhost:8080/graphql";
     @Bean
     public GraphQLClient graphqlClient() {
         var restTemplate = new RestTemplate();
@@ -30,6 +30,7 @@ public class GraphqlClientConfiguration {
                         }
                 )
         );
+
         RequestExecutor requestExecutor = (url, headers, body) -> {
             var httpHeaders = new HttpHeaders();
             headers.forEach(httpHeaders::addAll);
@@ -37,13 +38,13 @@ public class GraphqlClientConfiguration {
             return new HttpResponse(exchange.getStatusCodeValue(), exchange.getBody());
         };
 
-        return GraphQLClient.createCustom("http://localhost:8080/grpahql", requestExecutor);
+        return GraphQLClient.createCustom(url, requestExecutor);
     }
 
 
     @Bean
     public MonoGraphQLClient webFluxGraphqlClient() {
-        var webClient = WebClient.builder().baseUrl("http://localhost:8080/grpahql")
+        var webClient = WebClient.builder().baseUrl(url)
                 .defaultHeader(HttpHeaders.AUTHORIZATION, "Basic Zm9vOmJhcg==")
                 .build();
 

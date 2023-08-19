@@ -11,3 +11,11 @@ query findAuthorById($authorId: Long!) {
         lastName
     }
 }
+
+query getAllAuthors {
+    rows: getAuthors {
+        id
+        firstName
+        lastName
+    }
+}

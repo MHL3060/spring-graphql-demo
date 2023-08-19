@@ -2,7 +2,8 @@ scalar Long
 
 type Query {
     getAuthors: [Author]
-
+    findBooksByAuthorId(authorId: Long): [Book]
+    findAuthorById(authorId: Long): Author
 }
 
 type Author {
