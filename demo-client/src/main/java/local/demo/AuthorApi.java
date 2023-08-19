@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 @Component
 public class AuthorApi {
 
-
     private final GraphQLClient graphQLClient;
     private final MonoGraphQLClient monoGraphQLClient;
 

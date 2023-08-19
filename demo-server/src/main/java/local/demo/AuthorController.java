@@ -21,7 +21,6 @@ public class AuthorController {
 
     private final BookService bookService;
 
-
     @QueryMapping
     public Flux<Author> getAuthors() {
         return authorService.getAll();
