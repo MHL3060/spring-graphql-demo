@@ -18,3 +18,13 @@ type Book {
     title: String
     authors: [Author]
 }
+
+input AuthorInput {
+    email: String
+    firstName: String
+    lastName: String
+}
+
+type Mutation {
+    save(author: AuthorInput): Author
+}

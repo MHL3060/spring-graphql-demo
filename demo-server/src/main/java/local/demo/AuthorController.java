@@ -5,12 +5,15 @@ import graphql.schema.DataFetchingEnvironment;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
@@ -41,8 +44,6 @@ public class AuthorController {
         return bookService.findBooksByAuthorId(authorId);
     }
 
-
-
     @SchemaMapping(typeName = "Book", field = "authors")
     public Flux<Author> getBooks(Book book, DataFetchingEnvironment environment) {
         log.info("dept={}, fields='{}'", environment.getSelectionSet().getFields().size(), environment.getSelectionSet().getFields());
@@ -51,8 +52,10 @@ public class AuthorController {
 
     }
 
-
-
+    @MutationMapping
+    public Author save(@Argument @Valid Author author) {
+        return authorService.save(author);
+    }
 
 
 

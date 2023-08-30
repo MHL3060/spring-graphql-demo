@@ -1,21 +1,13 @@
 package local.demo;
 
-
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StreamUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class AuthorService {
@@ -35,6 +27,22 @@ public class AuthorService {
                 .findAny();
 
         return Mono.justOrEmpty(authorOpt);
+    }
+
+    public Author save(Author author) {
+
+        if (author.getId() == null) {
+            author.setId(System.currentTimeMillis());
+            authors.add(author);
+        } else {
+            for (var i = authors.iterator(); i.hasNext();) {
+                if (i.next().getId() == author.getId()) {
+                    i.remove();
+                }
+            }
+            authors.add(author);
+        }
+        return author;
     }
 
     public Flux<Author> getAll() {

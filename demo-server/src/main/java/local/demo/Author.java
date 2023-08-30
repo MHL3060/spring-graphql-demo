@@ -3,17 +3,24 @@ package local.demo;
 
 import lombok.Data;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 public class Author {
 
     private Long id;
+
+
+    @NotNull
     private String firstName;
 
+    @NotNull
     private String lastName;
 
     private List<String> bookIds;
 
+    @Email
+    private String emailAddress;
 }
