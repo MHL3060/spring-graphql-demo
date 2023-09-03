@@ -25,7 +25,6 @@ public class AuthorController {
     private final BookService bookService;
 
     @QueryMapping
-    @PreAuthorize("hasRole('USER')")
     public Flux<Author> getAuthors() {
         return authorService.getAll();
     }
