@@ -32,7 +32,6 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfiguration {
 
     @Bean
-    @Primary
     public MapReactiveUserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
         UserDetails user = User
                 .withUsername("foo")
@@ -41,8 +40,6 @@ public class SecurityConfiguration {
                 .build();
         return new MapReactiveUserDetailsService(user);
     }
-
-
 
     @Bean
     public SecurityWebFilterChain filterChain(ServerHttpSecurity http) throws Exception {

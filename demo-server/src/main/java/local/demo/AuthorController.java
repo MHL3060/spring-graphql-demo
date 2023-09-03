@@ -25,6 +25,7 @@ public class AuthorController {
     private final BookService bookService;
 
     @QueryMapping
+    @PreAuthorize("hasRole('USER')")
     public Flux<Author> getAuthors() {
         return authorService.getAll();
     }
@@ -50,6 +51,18 @@ public class AuthorController {
         return Flux.fromIterable(book.getAuthorIds())
                 .flatMap(authorService::findById);
 
+    }
+
+    @SchemaMapping(field = "price")
+    public Mono<Float> getBookPrice(Book book, @Argument String country) {
+
+        if (country == null || country.equals("") || country.equalsIgnoreCase("us")) {
+            return Mono.just(1.0f);
+        } else if (country.equalsIgnoreCase("ca")) {
+            return Mono.just(1.3f);
+        } else {
+            return Mono.error(InvalidCountryException::new);
+        }
     }
 
     @MutationMapping

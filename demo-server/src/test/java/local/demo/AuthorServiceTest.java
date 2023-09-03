@@ -3,6 +3,7 @@ package local.demo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import reactor.test.StepVerifier;
 
 import java.io.IOException;
 
@@ -20,9 +21,11 @@ class AuthorServiceTest {
 
     @Test
     public void testFind() {
-        var authorOpt = authorService.findById(1l);
-        assertTrue(authorOpt.isPresent());
-        assertEquals("Alex", authorOpt.get().getFirstName());
+        var authorMono = authorService.findById(1l);
+       StepVerifier.create(authorMono)
+                       .expectNextMatches(author -> author.getFirstName().equals("Alex"))
+                               .verifyComplete();
+
     }
 
 }

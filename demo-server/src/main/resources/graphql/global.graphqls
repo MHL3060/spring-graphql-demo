@@ -2,8 +2,8 @@ scalar Long
 
 type Query {
     getAuthors: [Author]
-    findBooksByAuthorId(authorId: Long): [Book]
-    findAuthorById(authorId: Long): Author
+ ##   findBooksByAuthorId(authorId: Long): [Book]
+ ##   findAuthorById(authorId: Long): Author
 }
 
 type Author {
@@ -16,6 +16,7 @@ type Author {
 type Book {
     isdn: String
     title: String
+    price(country: String): Float
     authors: [Author]
 }
 
