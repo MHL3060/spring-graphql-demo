@@ -61,17 +61,13 @@ public class AuthorController {
         } else if (country.equalsIgnoreCase("ca")) {
             return Mono.just(1.3f);
         } else {
-            return Mono.error(InvalidCountryException::new);
+            return Mono.empty();
         }
     }
 
     @MutationMapping
-    public Author save(@Argument @Valid Author author) {
+    public Author save(@Argument Author author) {
         return authorService.save(author);
     }
-
-
-
-
 
 }

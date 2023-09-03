@@ -25,7 +25,9 @@ public class GraphqlExceptionResolver extends ReactiveSecurityDataFetcherExcepti
     @Override
     public Mono<List<GraphQLError>> resolveException(Throwable exception, DataFetchingEnvironment environment) {
 
-        if (exception instanceof ValidationException) {
+        return super.resolveException(exception, environment);
+
+        /*if (exception instanceof ConstraintViolationException) {
             var validationException = (ConstraintViolationException) exception;
             var errors = validationException.getConstraintViolations().stream()
                     .map(error -> GraphqlErrorBuilder.newError()
@@ -35,18 +37,9 @@ public class GraphqlExceptionResolver extends ReactiveSecurityDataFetcherExcepti
                     ).collect(Collectors.toList());
 
             return Mono.just(errors);
-        } else if (exception instanceof InvalidCountryException) {
-            return Mono.just(
-                    List.of(
-                            GraphqlErrorBuilder.newError()
-                                    .message("invalid country or country is not supported")
-                                    .build()
-                    )
-            );
-
         } else {
             return super.resolveException(exception, environment);
-        }
+        }*/
     }
 
 

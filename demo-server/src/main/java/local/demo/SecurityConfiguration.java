@@ -15,7 +15,7 @@ import org.springframework.security.web.server.SecurityWebFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
 @Configuration
-@EnableReactiveMethodSecurity //(useAuthorizationManager=true)
+@EnableReactiveMethodSecurity
 @EnableWebFluxSecurity
 public class SecurityConfiguration {
 
