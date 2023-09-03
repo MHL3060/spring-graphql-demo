@@ -12,6 +12,11 @@ import static graphql.scalars.ExtendedScalars.*;
 @Configuration
 public class GraphqlConfiguration {
 
+    /**
+     * since Graphql built-in type doesn't include some of the Java common types.
+     * add them in here.
+     * @return
+     */
     @Bean
     public RuntimeWiringConfigurer runtimeWiringConfigurer() {
         return wiringBuilder -> wiringBuilder.scalar(GraphQLLong)
