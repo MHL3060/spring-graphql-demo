@@ -29,7 +29,7 @@ public class AuthorController {
         return authorService.getAll();
     }
 
-    @SchemaMapping(typeName = "Author", field = "books")
+    @SchemaMapping(field = "books")
     public Flux<Book> getBooks(Author author) {
         return bookService.findBooksByAuthorId(author.getId());
     }
