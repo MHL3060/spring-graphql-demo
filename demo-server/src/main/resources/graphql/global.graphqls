@@ -2,8 +2,6 @@ scalar Long
 
 type Query {
     getAuthors: [Author]
- ##   findBooksByAuthorId(authorId: Long): [Book]
- ##   findAuthorById(authorId: Long): Author
 }
 
 type Author {
@@ -18,14 +16,4 @@ type Book {
     title: String
     price(country: String): Float
     authors: [Author]
-}
-
-input AuthorInput {
-    email: String
-    firstName: String
-    lastName: String
-}
-
-type Mutation {
-    save(author: AuthorInput): Author
 }

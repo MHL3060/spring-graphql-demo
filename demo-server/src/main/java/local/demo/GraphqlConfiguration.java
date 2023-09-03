@@ -18,41 +18,4 @@ public class GraphqlConfiguration {
                 .scalar(DateTime)
                 .scalar(UUID);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    @Bean
-    @ConditionalOnMissingBean
-    public MaxQueryComplexityInstrumentation maxQueryComplexityInstrumentation() {
-        return new MaxQueryComplexityInstrumentation(100);
-    }
-
-    @Bean
-    @ConditionalOnMissingBean
-    public MaxQueryDepthInstrumentation maxQueryDepthInstrumentation() {
-        return new MaxQueryDepthInstrumentation(5);
-    }
 }

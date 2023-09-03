@@ -45,9 +45,9 @@ public class AuthorController {
         return bookService.findBooksByAuthorId(authorId);
     }
 
-    @SchemaMapping(typeName = "Book", field = "authors")
+    @SchemaMapping(field = "authors")
     public Flux<Author> getBooks(Book book, DataFetchingEnvironment environment) {
-        log.info("dept={}, fields='{}'", environment.getSelectionSet().getFields().size(), environment.getSelectionSet().getFields());
+        // log.info("dept={}, fields='{}'", environment.getSelectionSet().getFields().size(), environment.getSelectionSet().getFields());
         return Flux.fromIterable(book.getAuthorIds())
                 .flatMap(authorService::findById);
 
@@ -61,17 +61,7 @@ public class AuthorController {
         } else if (country.equalsIgnoreCase("ca")) {
             return Mono.just(1.3f);
         } else {
-            return Mono.error(InvalidCountryException::new);
+            return Mono.just(2.0f);
         }
     }
-
-    @MutationMapping
-    public Author save(@Argument @Valid Author author) {
-        return authorService.save(author);
-    }
-
-
-
-
-
 }

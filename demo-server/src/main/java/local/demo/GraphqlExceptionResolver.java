@@ -35,19 +35,8 @@ public class GraphqlExceptionResolver extends ReactiveSecurityDataFetcherExcepti
                     ).collect(Collectors.toList());
 
             return Mono.just(errors);
-        } else if (exception instanceof InvalidCountryException) {
-            return Mono.just(
-                    List.of(
-                            GraphqlErrorBuilder.newError()
-                                    .message("invalid country or country is not supported")
-                                    .build()
-                    )
-            );
-
         } else {
             return super.resolveException(exception, environment);
         }
     }
-
-
 }
