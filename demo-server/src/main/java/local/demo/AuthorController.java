@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
@@ -50,7 +49,6 @@ public class AuthorController {
         log.info("dept={}, fields='{}'", environment.getSelectionSet().getFields().size(), environment.getSelectionSet().getFields());
         return Flux.fromIterable(book.getAuthorIds())
                 .flatMap(authorService::findById);
-
     }
 
     @SchemaMapping(field = "price")
@@ -64,14 +62,4 @@ public class AuthorController {
             return Mono.error(InvalidCountryException::new);
         }
     }
-
-    @MutationMapping
-    public Author save(@Argument @Valid Author author) {
-        return authorService.save(author);
-    }
-
-
-
-
-
 }
