@@ -7,8 +7,6 @@ import reactor.test.StepVerifier;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class AuthorServiceTest {
 
 
