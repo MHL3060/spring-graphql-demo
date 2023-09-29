@@ -25,6 +25,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-graphql'
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'com.netflix.graphql.dgs:graphql-dgs-client:5.4.3'
+	implementation "com.playtika.reactivefeign:feign-reactor:3.2.6"
+	implementation "com.playtika.reactivefeign:feign-reactor-spring-cloud-starter:3.2.11"
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
